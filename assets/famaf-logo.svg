@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 160" role="img" aria-label="FAMAF logo">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3B6984"/>
+      <stop offset="100%" stop-color="#4F8CB1"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="160" fill="#ffffff"/>
+  <g transform="translate(20,18)">
+    <rect x="0" y="0" width="90" height="90" rx="12" fill="url(#grad)"/>
+    <path d="M26 64V26h12v38h18V26h12v38h-42z" fill="#ffffff"/>
+    <path d="M40 18h14v8H40zm0 0v-8h4v8z" fill="#ffffff" opacity="0.9"/>
+  </g>
+  <g fill="#1f2d3d" font-family="Arial, Helvetica, sans-serif" font-weight="700">
+    <text x="130" y="68" font-size="28">FaMAF</text>
+    <text x="130" y="101" font-size="18" fill="#4F8CB1">Facultad de Matemática</text>
+    <text x="130" y="126" font-size="18" fill="#4F8CB1">Astronomía, Física y Computación</text>
+  </g>
+</svg>

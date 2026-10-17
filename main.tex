@@ -1,0 +1,181 @@
+% !TEX program = lualatex
+\documentclass[10pt,aspectratio=169]{beamer}
+
+% ====== FUENTE ======
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{TeX Gyre Termes}}
+
+% ====== PAQUETES ======
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{tikz}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multimedia}
+\usepackage{algpseudocode}
+
+% ====== PALETA ======
+\definecolor{FAMAFBlue}{RGB}{79,140,177}
+\definecolor{FAMAFBlue2}{RGB}{108,194,234}
+\definecolor{FAMAFBlue3}{RGB}{153,214,239}
+\definecolor{FAMAFBlueDark}{RGB}{59,105,132}
+\definecolor{FAMAFGray}{RGB}{245,248,250}
+
+% ====== FORMATO ======
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamertemplate{navigation symbols}{}
+\linespread{1.0}
+\setlength{\parskip}{0pt}
+\AtBeginEnvironment{frame}{\raggedright}
+\setbeamersize{text margin left=0.8cm, text margin right=0.5cm}
+
+% ====== LISTAS ======
+\setbeamertemplate{itemize item}{\raise0.15ex\hbox{\large\textbullet}}
+\setbeamertemplate{itemize subitem}{\raise0.10ex\hbox{\normalsize\textopenbullet}}
+\setbeamertemplate{itemize subsubitem}{\raise0.10ex\hbox{\scriptsize$\diamond$}}
+\setbeamercolor{itemize item}{fg=FAMAFBlueDark}
+\setbeamercolor{itemize subitem}{fg=FAMAFBlueDark}
+\setbeamercolor{itemize subsubitem}{fg=FAMAFBlueDark}
+\setbeamertemplate{itemize/enumerate body begin}{\vspace{-2pt}}
+\setbeamertemplate{itemize/enumerate body end}{\vspace{-2pt}}
+
+% ====== BLOQUES ======
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamerfont{block body}{size=\normalsize}
+\addtobeamertemplate{block begin}{}{\vspace{-2pt}}
+\addtobeamertemplate{block end}{}{\vspace{-2pt}}
+
+% ====== HEAD/FOOT ======
+\setbeamercolor{section in head/foot}{bg=white, fg=FAMAFBlueDark}
+
+% ====== LOGO ======
+\newcommand{\FamafLogo}{./assets/famaf-logo.svg}
+\newcommand{\LogoHeight}{1.10cm}
+\newcommand{\LogoHeightTitle}{1.70cm}
+
+\newcommand{\LogoGraphic}[1]{%
+  \includegraphics[height=#1,keepaspectratio]{\FamafLogo}%
+}
+
+\newif\ifshowcontentlogo
+\showcontentlogotrue
+
+\newcommand{\PlaceLogoBottomRight}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south east,inner sep=0pt] at ([xshift=-0.35cm,yshift=0.30cm]current page.south east)
+    {\LogoGraphic{\LogoHeight}};
+  \end{tikzpicture}%
+}
+
+\addtobeamertemplate{background canvas}{}{%
+  \ifshowcontentlogo
+    \PlaceLogoBottomRight
+  \fi
+}
+
+% ====== ESTILO / TÍTULOS ======
+\setbeamercolor{title}{fg=FAMAFBlueDark}
+\setbeamercolor{frametitle}{fg=FAMAFBlueDark}
+\setbeamerfont{title}{series=\bfseries,size=\Large}
+\setbeamerfont{frametitle}{series=\bfseries,size=\normalsize}
+
+\setbeamertemplate{headline}{%
+  \begin{beamercolorbox}[
+    wd=\paperwidth,
+    ht=0.9cm,
+    dp=0.25cm,
+    leftskip=0.4cm,
+    rightskip=0.4cm
+  ]{section in head/foot}
+    {\small\bfseries\color{FAMAFBlueDark}
+      \insertsectionhead
+    }
+    \vspace{0.1cm}
+    \color{FAMAFBlue}\rule{\paperwidth}{0.6pt}
+  \end{beamercolorbox}
+}
+
+\setbeamertemplate{frametitle}{%
+  \vspace{-0.20cm}
+  \begin{beamercolorbox}[
+    wd=\paperwidth,
+    ht=0.70cm,
+    dp=0.10cm,
+    leftskip=0.8cm,
+    rightskip=0.5cm
+  ]{frametitle}
+    \usebeamerfont{frametitle}\insertframetitle
+  \end{beamercolorbox}
+  \vspace{-0.15cm}
+}
+
+\setbeamercolor{block title}{fg=black,bg=FAMAFBlue3}
+\setbeamercolor{block body}{fg=black,bg=FAMAFGray}
+
+\newcommand{\BulletsOff}{%
+  \setbeamertemplate{itemize item}{}%
+  \setbeamertemplate{itemize subitem}{}%
+  \setbeamertemplate{itemize subsubitem}{}%
+}
+
+% ====== METADATOS ======
+\newcommand{\nota}[1]{{\color{red} #1}}
+\title[Presentación]{Título de la presentación}
+\author{Tu nombre}
+\date{\today}
+
+\AtBeginSection[]{
+  \begin{frame}{}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+{
+\showcontentlogofalse
+\setbeamercolor{background canvas}{bg=FAMAFBlueDark}
+\begin{frame}[plain]
+  \vfill
+  \centering
+  {\usebeamerfont{title}\color{white}\inserttitle\par}
+  \vspace{0.5cm}
+  {\large\color{white}\insertauthor\par}
+  \vspace{0.2cm}
+  {\normalsize\color{white}\insertdate\par}
+  \vfill
+  {\small\color{white}Facultad de Matemática, Astronomía, Física y Computación (FaMAF)\par}
+  \LogoGraphic{\LogoHeightTitle}
+  \vspace{0.15cm}
+\end{frame}
+}
+
+\begin{frame}{Estructura de la presentación}
+  \tableofcontents
+\end{frame}
+
+\input{sections/01_intro/intro.tex}
+\input{sections/02_conceptos/conceptos.tex}
+\input{sections/03_ejemplo/ejemplo.tex}
+\input{sections/04_cierre/cierre.tex}
+
+{
+\setbeamercolor{background canvas}{bg=FAMAFBlueDark}
+\showcontentlogofalse
+\begin{frame}[plain]
+  \vfill
+  \centering
+  {\Huge\bfseries\color{white}¡Muchas Gracias!}
+  \vfill
+  \vfill
+  \LogoGraphic{\LogoHeightTitle}
+\end{frame}
+}
+
+\end{document}
